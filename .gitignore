@@ -1,1 +1,6 @@
 dev_*
+.idea
+.vscode
+Python*
+Stable
+Stable/*
