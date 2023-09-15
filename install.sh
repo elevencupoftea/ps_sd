@@ -49,6 +49,9 @@ function make_python(){
   sudo ./configure --enable-optimizations
   sudo make -j$(nproc)
   sudo make altinstall
+
+  cd ..
+  rm -rf Python-$PYTHON_VERSION
 }
 
 
