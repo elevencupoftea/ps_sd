@@ -60,3 +60,7 @@ system_update
 make_python
 prepare_environment
 
+echo "######################################################"
+echo "ALL DONE"
+echo "######################################################"
+
