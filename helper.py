@@ -8,7 +8,7 @@ def get_name(response):
     filename = re.findall('filename="([^"]+)"', response.headers['Content-Disposition'])[0]
     return filename
 
-def download(url_list : list | tuple, destination): 
+def download(url_list, destination): 
     name_list = []
     for url in url_list:
         response = requests.get(url, stream=True)
