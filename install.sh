@@ -14,7 +14,7 @@ function show_status(){
 function system_update() {
   show_status "Updating System"
   sudo apt update > /dev/null 2>&1
-  sudo apt install wget git -y > /dev/null 2>&1
+  sudo apt install wget git curl -y > /dev/null 2>&1
 
   # Make project folder
   mkdir $PROJECT_PATH
@@ -31,8 +31,9 @@ function prepare_environment() {
 
   # Install dependencies
   source "$NOTEBOOK_PATH"/"$VENV_PATH"/bin/activate
-  pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 > /dev/null 2>&1
-  pip install matplotlib-inline ipython > /dev/null 2>&1
+  pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 --no-cache-dir > /dev/null 2>&1
+  pip install matplotlib-inline ipython tqdm requests > /dev/null 2>&1
+  pip install -r "$SD_PATH"/requirements_versions.txt > /dev/null 2>&1
 
 }
 
@@ -61,10 +62,9 @@ function make_python(){
 
 
 # Exec
-system_update
-make_python
+# system_update
+# make_python
 prepare_environment
-
 echo "######################################################"
 echo "----------------------ALL DONE------------------------"
 echo "######################################################"

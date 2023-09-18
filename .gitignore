@@ -1,6 +1,8 @@
+__pycache__
 dev_*
 .idea
 .vscode
 Python*
 Stable
 Stable/*
+web_url_fix.sh
