@@ -2,13 +2,16 @@ import requests
 from tqdm import tqdm
 import re
 import os
-# def download(url_list):
-#     for url in url_list:
+
+
 def get_name(response):
     filename = re.findall('filename="([^"]+)"', response.headers['Content-Disposition'])[0]
     return filename
 
-def download(url_list, destination): 
+
+def download(url_list, destination):
+    if len(url_list) == 0:
+        return False
     name_list = []
     for url in url_list:
         response = requests.get(url, stream=True)
@@ -31,14 +34,32 @@ def download(url_list, destination):
             print(f"{filename} exists.")
         name_list.append(filename)
     return name_list[0]
-        
 
-def create_paths(START_PATH, project_folder, venv_folder):
-    project_path = os.path.join(START_PATH, project_folder)
-    venv_path = os.path.join(START_PATH, project_path, venv_folder)
-    sd_path = os.path.join(START_PATH, project_path, "stable_diffusion")
+
+def create_paths(start_path, project_folder, venv_folder):
+    project_path = os.path.join(start_path, project_folder)
+    venv_path = os.path.join(start_path, project_path, venv_folder)
+    sd_path = os.path.join(start_path, project_path, "stable_diffusion")
     model_path = os.path.join(sd_path, "models", "Stable-diffusion")
     return project_path, venv_path, sd_path, model_path
+
+
+def prepare_parameters(model, sd_model, username, password, api, cpu):
+    params = "--port 6006 --listen --no-gradio-queue ----enable-insecure-extension-access -- --xformers"
+    if model:
+        params += f" --ckpt {model}"
+    if not sd_model:
+        params += " --no-download-sd-model"
+    if api:
+        params += " --api"
+    if cpu:
+        params += " --use-cpu all --precision full --no-half --skip-torch-cuda-test"
+    else:
+        params += " --opt-sub-quad-attention"
+    if username != "" or password != "":
+        params += f" --gradio-auth {username}:{password}"
+    return params
+
 
 if __name__ == "__main__":
     pass
