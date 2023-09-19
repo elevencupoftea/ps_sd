@@ -10,7 +10,7 @@ def get_name(response):
 
 
 def download(url_list, destination):
-    if len(url_list) > 0:
+    if url_list[0] != "":
         name_list = []
         for url in url_list:
             response = requests.get(url, stream=True)
@@ -63,4 +63,4 @@ def prepare_parameters(model, sd_model, username, password, api, cpu):
 
 
 if __name__ == "__main__":
-    pass
+    download(("",), "./")
