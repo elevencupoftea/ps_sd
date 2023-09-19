@@ -19,7 +19,7 @@ This method will deploy everything you need to quickly connect Stable Diffusion 
 ### Cell Details
 The notepad has only three sections:\
 #### Prepare machine
-> This block is run once. The next time you run machine, you can skip it*
+> This block is run once. The next time you run machine, you can skip it
 - Downloading python 3.10 source code (Paperspace uses 3.9 by default)
 - Building python 3.10 from the source code and copy it to ./Python (do not delete this folder, because the next time you connect to the machine, this folder will always be used).
 - Creating a virtual environment in the ./venv folder (also do not delete this folder).
@@ -29,7 +29,7 @@ The notepad has only three sections:\
 #### Parameters
 In this block you can customize your Stable Diffusion:
 - Enabling API
-- Selecting and downloading a third-party model (currently supported by https://civitai.com
+- Selecting and downloading a third-party model (currently supported by https://civitai.com)
 > make sure that the selected model is downloaded completely (The download bar should reach 100%). Otherwise, you will need to delete the incompletely downloaded model at the path **./stable-diffusion/models/Stable-diffusion** 
 - Enable authorization - before logging into the WebUI you will need to enter your specified data
 - Downloading a standard V1.5 model
