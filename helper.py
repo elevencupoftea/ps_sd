@@ -10,30 +10,31 @@ def get_name(response):
 
 
 def download(url_list, destination):
-    if len(url_list) == 0:
+    if len(url_list) > 0:
+        name_list = []
+        for url in url_list:
+            response = requests.get(url, stream=True)
+            filename = get_name(response=response)
+            if not os.path.exists(os.path.join(destination, filename)):
+                print(f"Downloading {filename}")
+                response.raise_for_status()
+                total_size = int(response.headers.get('content-length', 0))
+                block_size = 8192
+                with tqdm(total=total_size, disable=False, bar_format="|{bar:50}| {percentage:3.0f}%") as progress_bar:
+                    with open(os.path.join(destination, filename), 'wb') as file:
+                        for buffer in response.iter_content(block_size):
+                            if not buffer:
+                                break
+                            file.write(buffer)
+                            progress_bar.update(len(buffer))
+                        progress_bar.close()
+                print("😊")
+            else:
+                print(f"{filename} exists.")
+            name_list.append(filename)
+        return name_list[0]
+    else:
         return False
-    name_list = []
-    for url in url_list:
-        response = requests.get(url, stream=True)
-        filename = get_name(response=response)
-        if not os.path.exists(os.path.join(destination, filename)):
-            print(f"Downloading {filename}")
-            response.raise_for_status()
-            total_size = int(response.headers.get('content-length', 0))
-            block_size = 8192
-            with tqdm(total=total_size, disable=False, bar_format="|{bar:50}| {percentage:3.0f}%") as progress_bar:
-                with open(os.path.join(destination, filename), 'wb') as file:
-                    for buffer in response.iter_content(block_size):
-                        if not buffer:
-                            break
-                        file.write(buffer)
-                        progress_bar.update(len(buffer))
-                    progress_bar.close()
-            print("😊")
-        else:
-            print(f"{filename} exists.")
-        name_list.append(filename)
-    return name_list[0]
 
 
 def create_paths(start_path, project_folder, venv_folder):
