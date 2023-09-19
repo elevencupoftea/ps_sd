@@ -28,7 +28,7 @@ function prepare_environment() {
   git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git ./$SD_PATH > /dev/null 2>&1
 
   # Create virtual environment
-  /usr/local/bin/python3.10 -m venv "$NOTEBOOK_PATH"/"$VENV_PATH"
+  $PYTHON_PATH/bin/python3.10 -m venv "$NOTEBOOK_PATH"/"$VENV_PATH"
 
   # Install dependencies
   source "$NOTEBOOK_PATH"/"$VENV_PATH"/bin/activate
