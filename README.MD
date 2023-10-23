@@ -12,6 +12,7 @@ This method will deploy everything you need to quickly connect Stable Diffusion 
 3. Go to the **Terminals** tab and create one
 4. In the terminal type the following:
    - `git clone https://github.com/elevencupoftea/ps_sd` - *Copying this repository to the /notebooks folder*
+   - _For free account upload **sd.ipynb, requirements.txt, install.sh, helper.py** to Paperspace._
 5. Switch to the **Files** tab and open notepad **ps_sd/sb.ipynb** and execute all the cells from top to bottom.\
    *The first run may take about 10 minutes, as Python 3.10 will be built from source and all dependencies will be downloaded. If notepad does not open, refresh the page and try again*
 6. Wait until the last cell is loaded and a link beginning with **"tensorboard-"** appears in the output window</li>

@@ -14,6 +14,7 @@ function show_status(){
 # Update system
 function system_update() {
   show_status "Updating System"
+  rm -rf ps_sd
   sudo apt update > /dev/null 2>&1
   sudo apt install wget git curl -y > /dev/null 2>&1
 
@@ -32,10 +33,10 @@ function prepare_environment() {
 
   # Install dependencies
   source "$NOTEBOOK_PATH"/"$VENV_PATH"/bin/activate
-  pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 --no-cache-dir > /dev/null 2>&1
+  pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 --no-cache-dir > /dev/null 2>&1
   pip install matplotlib-inline ipython tqdm requests > /dev/null 2>&1
   pip install -r "$SD_PATH"/requirements_versions.txt > /dev/null 2>&1
-  pip install xformers==0.0.23.dev660 > /dev/null 2>&1
+  pip install xformers==0.0.23.dev657 > /dev/null 2>&1
 
 }
 
