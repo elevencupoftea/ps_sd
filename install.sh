@@ -35,6 +35,7 @@ function prepare_environment() {
   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 --no-cache-dir > /dev/null 2>&1
   pip install matplotlib-inline ipython tqdm requests > /dev/null 2>&1
   pip install -r "$SD_PATH"/requirements_versions.txt > /dev/null 2>&1
+  pip install xformers==0.0.23.dev662 > /dev/null 2>&1
 
 }
 
