@@ -45,8 +45,10 @@ def create_paths(start_path, project_folder, venv_folder):
     return project_path, venv_path, sd_path, model_path
 
 
-def prepare_parameters(model, sd_model, username, password, api, cpu):
-    params = "--port 6006 --listen --no-gradio-queue --enable-insecure-extension-access --xformers"
+def prepare_parameters(model, sd_model, username, password, api, cpu, xformers):
+    params = "--port 6006 --listen --no-gradio-queue --enable-insecure-extension-access"
+    if xformers:
+        params += f" --xformers"
     if model:
         params += f" --ckpt {model}"
     if not sd_model:
